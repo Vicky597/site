@@ -1,0 +1,161 @@
+.topImg{
+	overflow: hidden;
+}
+.topImg img{
+	margin: 0 auto;
+}
+/*关于我*/
+.main-about, .main-skills{
+	width: 1180px;
+	margin: 0 auto;
+	background: #eee;
+	text-align: center;
+}
+.main-about>h1,.main-skills>h1{
+	padding-top: 40px;
+	color: #E8CD49;
+}
+.main-about> p,.main-skills>p{
+	color: #ccc;
+}
+.main-about> p span{
+	font-size: 22px;
+}
+/*基本信息*/
+.basic-contant{
+	width: 1180px;
+	margin: 20px auto 0;
+	padding-bottom: 45px;
+	margin-left: 170px;
+}
+.basic-contant ul{
+	width: 275px;
+	margin-right: 20px;
+	float: left;
+	text-align: left;
+	position: relative;
+}
+.basic-contant ul+ul:before{
+	content: '';
+	width: 1px;
+	height: 100px;
+	background: #ccc;
+	position: absolute;
+	top: 18%;
+	left: -10px;
+
+}
+.basic-contant ul h3{
+	font-size: 17px;
+	color: #333;
+}
+.basic-contant ul h3 i{
+	color: #E8CD49;
+	height: 10px;
+	width: 10px;
+	margin-right: 5px;
+}
+.basic-contant ul li p{
+	height: 30px;
+	line-height: 30px;
+	margin-left: 25px;
+	font-size: 14px;
+}
+.basic-contant ul li p span{
+	display: inline-block;
+	width: 100px;
+	text-align: left;
+	/*border: 1px solid red;*/
+	color: #E8CD49;
+	margin-right: 10px;
+}
+.basic-contant ul.black li p{
+	font-size: 13px;
+}
+.basic-contant ul.black li p span{
+	width: 70px;
+}
+.basic-contant ul.last li p{
+	font-size: 13px;
+	height: 40px;
+	line-height: 17px;
+	width: 280px;
+}
+
+/*专业技能*/
+.main-skills{
+	background: #FFFBF2;
+}
+.main-skills .skills-contant{
+	width: 800px;
+	margin: 25px auto;
+	height: 200px;
+	overflow: hidden;
+}
+.main-skills .skills-contant .big{
+	width: 1600px;
+	/*margin-left: -800px;*/
+	transition: margin-left 0.5s;
+}
+.skills-contant .box{
+	width: 200px;
+	height: 200px;
+	/*border: 1px solid red;*/
+	position: relative;
+	float: left;
+}
+.skills-contant .box span{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.7);
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 30px;
+}
+.skills-contant .box p.one{
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	border:8px solid #2465F5;
+	border-radius: 50%;
+	font-size: 32px;
+	color: #2465F5;
+	margin-left: 48px;
+	margin-bottom: 20px;
+}
+.skills-contant .box p.two{
+	width: 100px;
+	height: 25px;
+	line-height: 25px;
+	background: #2465F5;
+	border-radius: 20px;
+	color: #fff;
+	margin-left: 50px;
+	font-size: 13px;
+}
+/*专业技能的按钮*/
+.main-skills .btn{
+	/*width: 100%;*/
+	margin: 20px auto;
+	text-align: center;
+	padding-bottom: 40px;
+	position: relative;
+	top: 0;
+	/*left: 50%;*/
+	margin-left: 590px;
+}
+.main-skills .btn ul li{
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	display: inline-block;
+	background-color: #ccc;
+	float: left;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.main-skills .btn ul li.active{
+	background-color: red;
+}

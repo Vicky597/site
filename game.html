@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>别踩白块小游戏</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		body{
+			background: url('./img/23.jpg') no-repeat;
+			background-size: cover;
+			background-position: 0px -100px;
+		}
+		#cont{
+			width: 400px;
+			height: 400px;
+			border: 1px solid #ccc;
+			margin-top: 100px;
+			overflow: hidden;
+			margin: 80px auto;
+			/*margin-left: 50px;*/
+		}
+		#main{
+			width: 400px;
+			height: 400px;
+			/*border: 1px solid red;*/
+			position: relative;
+			top: -100px;
+
+		}
+		.row{
+			height: 100px;
+
+		}
+		.row div{
+			width: 98px;
+			height: 98px;
+			float: left;
+			border: 1px solid #ccc;
+		}
+		.black{
+			background-color: black;
+		}
+		#sc{
+			margin-top: 80px;
+			margin-left: 500px;
+			color: red;
+		}
+
+	</style>
+	<link rel="icon" href="./img/logo.png" type="image/x-icon">
+	<link rel="stylesheet" href="./css/public.css">
+</head>
+<body>
+	<div id="back"><a>返回</a></div>
+	<h1 align="center">别踩白块小游戏</h1>
+	<h2 id="sc">分数：<span>0<span></h2>
+	<div id="cont">
+		<div id="main"></div>
+	</div>
+</body>
+</html>
+<script>
+	var user = window.location.search;
+	var star = user.indexOf('?')+1;
+	var end = user.length;
+	var userName=user.substr(star,end);
+		userName=decodeURIComponent(userName);	
+	
+	// 游戏页的跳转
+	var back = document.querySelector('#back');
+	back.onclick = function() {
+		location.href = `main.html?${userName}`;
+	}
+	function getStyle(el,attr) {
+		return el.currentStyle?el.currentStyle[attr]:getComputedStyle(el,null)[attr];
+	}
+	
+	// 1.封装函数，注意：造好的div中有一个还得是黑色的
+	function cDiv(className) {
+		var div = document.createElement('div');
+		if (className) {
+			div.className=className;
+		}
+		return div;
+	}
+
+	// 2.调用cDiv，并且调用4次，才能造出4个div，其中一个是className为black
+	function cRow() {
+		// 0-3的随机数
+		var ind = Math.floor(Math.random()*4);
+
+		// 造长条
+		var row = cDiv('row');
+		for (var i = 0; i < 4; i++) {
+			if (i==ind) {
+				row.appendChild(cDiv('black'));
+			}else{
+				row.appendChild(cDiv());
+			}
+		}
+
+		if (main.firstChild) {
+			main.insertBefore(row,main.firstChild);
+		}else{
+			main.appendChild(row);
+		}
+	}
+	function init() {
+		for (var i = 0; i < 4; i++) {
+			cRow();
+		}
+		clock=setInterval('move()',40);
+	}
+	init();
+
+	var speed = 2;
+	function move() {
+		var top = getStyle(main,'top');
+		// console.log(top);//top是字符串 转换成数字
+		top = parseInt(top)+speed;
+		main.style.top = top+'px';
+
+		if (top>0) {
+			cRow();
+			main.style.top='-100px';
+			// console.log(main.children.length);
+			if (main.children.length >5) {
+				// console.log(main.lastChild);
+				main.removeChild(main.lastChild);
+			}
+			if (main.lastElementChild.pass == undefined) {
+				fail();
+			}
+		}
+	}
+
+	// 判断输赢
+	/*
+		2个地方判断输赢
+			1.点到白块就输了
+			2.有黑色的低块触底了，也就输了
+	*/
+	var state = true;
+	var index = 0;
+	main.onclick = function(ev){
+		ev.target = ev.target || ev.srcElement;
+		if (state==false) {
+			alert('你已经挂了，重新刷新再玩一次');
+		}else if(ev.target.className==''){
+			fail();
+		}else{
+			var score = document.querySelector('#sc span');
+			var sc = parseInt(score.innerHTML)+1;
+			index=parseInt(score.innerHTML)+1;
+			score.innerHTML=sc;
+			// 点击黑块 变白
+			ev.target.className='';
+			ev.target.parentNode.pass=true;
+			if (sc%10 == 0) {
+				speed +=2;
+			}
+		}
+
+	}
+	// 输了就调用这个函数
+	
+	console.log(index);
+	function fail() {
+		alert('你输了，得分'+index);
+		clearInterval(clock);
+		state=false;
+	}
+</script>

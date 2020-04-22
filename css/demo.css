@@ -1,0 +1,61 @@
+a,
+a:visited
+{
+	text-decoration:none;
+	outline:none;
+	color:#fff;
+}
+a:hover
+{
+	text-decoration:underline;
+	color:#ddd;
+}
+
+#clock
+{
+	position: relative;
+	width: 500px;
+	height: 500px;
+	list-style: none;
+	/*margin: 20px auto;*/
+	background: url('../img/clock.png') no-repeat center;
+	
+}
+#seconds,
+#minutes,
+#hours
+{
+	position: absolute;
+	width: 24px;
+	height: 485px;
+	left: 225px;
+}
+#date
+{
+	position: absolute;
+	top: 295px;
+	color: #666;
+	right: 125px;
+	font-weight: bold;
+	letter-spacing: 3px;
+	font-family: "微软雅黑";
+	font-size: 30px;
+	line-height: 36px;
+}
+#hours
+{
+	background: url('../img/hands.png') no-repeat left;
+	z-index: 1000;
+}
+#minutes
+{
+	background: url('../img/hands.png') no-repeat center;
+	width:25px;
+	z-index: 2000;
+}
+
+#seconds
+{
+	background: url('../img/hands.png') no-repeat right;
+	z-index: 3000;
+}

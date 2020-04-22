@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>欢迎用户注册！</title>
+	<!-- <link rel="stylesheet" href="css/2.css" type="text/css" media="all" /> -->
+	<style type="text/css">
+	.sub-main-w3 {
+	    display: -webkit-flex;
+	    display: -webkit-box;
+	    display: -moz-flex;
+	    display: -moz-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-pack: center;
+	    -moz-box-pack: center;
+	    -ms-flex-pack: center;
+	    -webkit-justify-content: center;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.sub-main-w3 h1{
+		position: absolute;
+		top: 9%;
+		left: 40%;
+	}
+	.sub-main-w3 form {
+		width: 600px;
+	    margin: 10vw 5vw 0;
+	    background: rgba(244, 244, 245, 0.08);
+	    padding: 3.5vw;
+	   box-sizing: border-box;
+	    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+	    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+	    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+	}
+	body.custom-background {
+		background-image:url('./img/273.png');
+		/*background-image:url('JIG_1657_ts.jpg'); */
+		background-size:100% 100%;
+		background-repeat:no-repeat;
+		background-position:top left;
+		background-attachment:fixed;
+	}
+	.sub-main-w3 form .reg_info{
+		width: 800px;
+		height: 46px;
+		margin-bottom: 12px;
+	}
+	.sub-main-w3 form .reg_info>input{
+		float: left;
+	}
+	.sub-main-w3 form .info_name{
+		display: inline-block;
+		width: 80px;
+		text-align: right;
+		margin-right: 10px;
+		float: left;
+	}
+	.sub-main-w3 form input{
+		font-size: 16px;
+	}
+	.sub-main-w3 form >input{
+		width: 80px;
+		height: 30px;
+		margin: 0;
+		padding: 0;
+		border: 1px solid transparent;
+		margin-left: 50px;
+		margin-top: 20px;
+		display: inline-block;
+		background: rgba(0,0,0,0.4);
+		color: #fff;
+		cursor: pointer;
+		transition: background .5s;
+	}
+	.sub-main-w3 form >input:hover{
+		background: rgba(0,0,0,0.9);
+	}
+	.sub-main-w3 form .tip_msg{
+		width: 240px;
+		font-size: 12px;
+		color: #333;
+		margin-left: 5px;
+		float: left;
+		line-height: 14px;
+	}
+	.error{
+		color: red;
+		font-size: 13px;
+		float: left;
+		margin-left: 5px;
+	}
+	.success{
+		color: #2bf666;
+		font-size: 13px;
+		float: left;
+		margin-left: 5px;
+	}
+</style>
+<link rel="icon" href="./img/logo.png" type="image/x-icon">
+<link rel="stylesheet" href="./css/public.css">
+</head>
+<body id="particles-js" class="custom-background">
+	<script color="0,0,0" opacity="0.9" count="150" src="./js/2.js"></script>
+<!-- 参数说明：
+color="255,0,0"    背景粒子线的颜色
+opacity="0.5"    背景粒子线的透明度，一般设置成0.5-1之间
+count="99"       背景粒子线的密度，建议不要太大，否则页面容易卡死 -->
+	<div id="back"><a href="index.html">返回</a></div>
+	<div class="sub-main-w3">
+		<h1>欢迎用户注册</h1>
+			<form action="..." method="post" id="reg">
+				<div class="reg_info">
+					<span class="info_name">用户名</span>
+					<input type="text" placeholder="请设置用户名" id="username">
+					<span class="tip_msg"></span>
+				</div>
+				<div class="reg_info">
+					<span class="info_name">密码</span>
+					<input type="password" placeholder="请设置登录密码" id="userpwd">
+					<span class="tip_msg"></span>
+				</div>
+				<div class="reg_info">
+					<span class="info_name">确认密码</span>
+					<input type="password" id="userpwd2" placeholder="请输入确认密码">
+					<span class="tip_msg"></span>
+				</div>
+				<input type="button" value="注册" id="reg1">
+				<input type="reset" value="重置">
+				
+			</form>
+		</div>
+</body>
+<script>
+
+	/*
+		表单的验证
+			1.判断用户名输入不允许为空
+			2.不能纯数字，要14个英文或者7个汉字组成
+			3.密码和确认密码是否一致
+			4.密码不能包含非法字符 不能包含中文（除了下划线、数字、英文）
+	*/
+	// 获取元素
+	var reg = document.querySelector('#reg1'),
+		user = document.querySelector('#username'),
+		pwd = document.querySelector('#userpwd'),
+		pwd2 = document.querySelector('#userpwd2');
+	// 定义用户名、密码、确认密码通过验证的标志
+	var isUserOk = false;
+	var isPwdOk = false;
+	var isPwd2Ok = false;
+
+	reg.onclick = function() {
+		if (!(isUserOk && isPwdOk && isPwd2Ok)) {
+			// 禁止用户提交
+			alert('请填写相关信息！');
+			return false;
+		}else{
+			if(confirm("是否进入登录页面")==true) {    
+			    location.href="index.html"; 
+			}else{
+			   	return false;
+			}
+		}
+
+	}
+
+	user.onfocus = function() {
+		if (isUserOk) {
+			return;
+		}
+		var span = this.nextElementSibling;
+		span.innerHTML = '设置后不可更改。<br>中英文均可，最长14个英文字母或者7个汉字';
+		span.className ='tip_msg';
+	}
+	// 用户名失去焦点时，判断是否符合条件
+	user.onblur = function() {
+		// 用户当前输入数据，去除左右两侧的空白符
+		var uname = this.value.trim();
+
+		// 判断是否为空
+		if (uname=='') {
+			// 设置错误提示
+			var span = this.nextElementSibling;
+			span.innerHTML = '用户名不允许为空';
+			span.className = 'error';
+
+			// 设置错误信息标志
+			isUserOk = false;
+
+			// 终止程序
+			return;
+		}
+
+		// 判断是否包含非法字符
+		var charReg = /[^\u4E00-\u9FA5\w]/;//中英文下划线数字
+		var res = charReg.test(uname);
+		// 如果是false 就是包含非法字符
+		if (res) {
+			var span = this.nextElementSibling;
+			span.innerHTML='用户名仅支持中英文、数字和下划线，<br>且不能纯数字';
+			span.className= 'error';
+
+			// 设置错误标志
+			isUserOk = false;
+
+			// 终止程序
+			return;
+		}
+
+		// 判断长度是否合法
+		// 遍历整个字符串，如果是中文，长度+2；否则+1
+		var len = 0;
+		for (var i = 0; i < uname.length; i++) {
+			var chRe =/[\u4E00-\u9FA5]/;
+			if (chRe.test(uname)) {
+				len+=2;
+			}else{
+				len += 1;
+			}
+		}
+
+		// 判断长度的错误信息
+		if (len > 14) {
+			// 设置错误信息
+			var span = this.nextElementSibling;
+			span.innerHTML = '用户名不能超过7个汉字或者14个字符';
+			span.className = 'error';
+
+			// 设置错误标记
+			isUserOk = false;
+
+			// 终止程序
+			return;
+		}else{
+			// 上述都满足，设置标记为真
+			isUserOk = true;
+
+			// 设置成功信息
+			var span = this.nextElementSibling;
+			span.innerHTML ='√';
+			span.className = 'success';
+		}
+	}
+
+	// 判断密码
+	pwd.onfocus = function() {
+		if (isPwdOk) {
+			return;
+		}
+		// 获取span元素
+		var span = this.nextElementSibling;
+		span.innerHTML = '长度为6-14个字符，支持数字、<br>大小写字母、标记符合，不允许为空';
+		span.className = 'tip_msg';
+	}
+	// 密码失去焦点事件
+	pwd.oninput = function() {
+		var pwd = this.value;
+		// 获取span元素
+		var span = this.nextElementSibling;
+
+		// 判断是否有空格、长度是否满足条件：6-14个字符
+		var pwdReg = /^[^\s]{6,14}$/;
+		var res = pwdReg.test(pwd);
+
+		// 判断
+		if (!res) {
+			// 设置错误信息
+			span.innerHTML='6-14个字符，不允许出现空格';
+			span.className = 'error';
+
+			// 设置错误标记
+			isPwdOk = false;
+			// 终止程序
+			return;
+		}else{
+			// 已经满足
+			span.innerHTML = '√';
+			span.className = 'success';
+			// 设置标记
+			isPwdOk = true;
+		}
+	}
+
+	// 确认密码获取焦点事件
+	pwd2.onfocus = function() {
+		if (isPwd2Ok) {
+			return;
+		}
+		var span = this.nextElementSibling;
+		span.innerHTML = '确认密码要和密码保持一致';
+		span.className = 'tip_msg';
+	}
+	// 确认密码失去焦点事件
+	pwd2.onblur = function() {
+		// 获取确认密码
+		var pwdValue = this.value;
+
+		// 获取span元素
+		var span = this.nextElementSibling;
+
+		// 给提示
+		if (pwdValue =='') {
+			span.innerHTML = '不允许为空';
+			// 设置错误标记
+			isPwd2Ok = false;
+			return;
+		}
+
+		// 比较原密码是否一致
+		if (pwdValue==pwd.value) {
+			// 提示成功信息
+			span.innerHTML = '√';
+			span.className='success';
+
+			// 设置标记信息
+			isPwd2Ok = true;
+
+		}else{
+			// 设置错误信息
+			span.innerHTML = '两次密码不一致';
+			span.className ='error';
+
+			// 设置错误标记
+			isPwd2Ok=false;
+		}
+	}
+</script>
+</html>

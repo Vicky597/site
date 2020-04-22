@@ -1,0 +1,228 @@
+ <!DOCTYPE HTML>
+<html lang="zxx">
+
+<head>
+	<title>My Personal Website</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="Video Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script>
+		
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+	
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+	<!-- css files -->
+	<link rel="icon" href="./img/logo.png" type="image/x-icon">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="css/fontawesome-all.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<!-- Font-Awesome-Icons-CSS -->
+	<style>
+		#footer{
+			margin-top: 25px;
+			font-size: 22px;
+			color: #fff;
+		}
+		.float{
+			position: absolute;
+			top: 55%;
+			right: 2%;
+			color: #f00;
+			font-size: 13px;
+		}
+		.success{
+			position: absolute;
+			top: 55%;
+			right: 2%;
+			color: #2bf666;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="video-w3l" data-vide-bg="video/1" id="one">
+
+		<!-- title -->
+		<h1>
+			<span>M</span>y
+			<span>P</span>ersonal
+			<span>W</span>ebsite</h1>
+		<!-- //title -->
+		<!-- content -->
+		<div class="sub-main-w3">
+			<form action="" method="post">
+				<div class="form-style-agile">
+					<label>
+						<i class="iconfont icon-fa-user"></i>Username</label>
+					<input placeholder="Username" name="Name" type="text" required="" id="username">
+				</div>
+				<div class="form-style-agile form-style-agile2">
+					<label>
+						<i class="iconfont icon-fa-unlock-alt"></i>Password</label>
+					<input placeholder="Password" name="Password" type="password" required="" id="password">
+				</div>
+				<!-- switch -->
+				<div class="checkout-w3l">
+					<div class="demo5">
+						<div class="switch demo3">
+							<input type="checkbox" id="checkPwd">
+							<label>
+								<i></i>
+							</label>
+						</div>
+					</div>
+					<a href="#">Remember Me</a>
+				</div>
+				<!-- //switch -->
+				<div class="last">
+						<input type="button" value="Log In" id="btn">
+				</div>
+
+				<!-- 注册 -->
+				<div class="button">
+					<button class="but"><a href="./register.html">注册</a>
+					</button>
+				</div>
+
+
+
+			</form>
+		</div>
+		<!-- //content -->
+
+		<!-- copyright -->
+		<div class="footer" >
+			<marquee behavior="alternate" direction="right" id="footer">As long as you are willing to learn, you can learn.__&copy;小琪</marquee>
+			<!-- <p id="footer">
+			</p> -->
+		</div>
+		<!-- //copyright -->
+	</div>
+
+	
+	<!-- Jquery -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- 用户名密码判断 -->
+	<script>
+		document.body.onselectstart = function() {
+			return false;
+		}
+		var user = document.querySelector('#username'),
+			pwd = document.querySelector('#password'),
+			btn = document.querySelector('#btn');
+		// 定义通过验证标志
+		var isUser = false;
+		var isPwd = false;
+
+		// 添加元素
+		var a = document.createElement('div');
+		var b = document.createElement('div');
+		
+
+		// 点击提交按钮进入
+		btn.onclick = function() {
+			if (!(isUser && isPwd)) {
+				// 禁止用户提交
+				alert('请填写相关信息！');
+				return false;
+			}else{
+				// alert(111);
+				location.href = `main.html?${user.value}`;
+			}
+		}
+
+		// 用户名填写
+		user.onfocus = function() {
+			if (isUser) {
+				return;
+			}
+			// 获取元素
+			
+			var UserFa = document.querySelector('.form-style-agile');
+			
+			a.className = 'float';
+			a.innerHTML = "请填写用户名";
+			UserFa.appendChild(a);
+		}
+		// 用户失去焦点判断是否符合条件
+		user.onblur = function() {
+			
+			var UserFa = document.querySelector('.form-style-agile');
+			// 去除两侧空白符
+			var uname = this.value.trim();
+			
+			// 判断是否为空
+			if (uname=='') {
+				a.className = 'float';
+				a.innerHTML = '用户名不允许为空';
+				UserFa.appendChild(a);
+				// console.log(a);
+				// 设置错误信息
+				isUser = false;
+				// 终止程序
+				return;
+			}
+
+			// 判断是否包含非法字符
+			var charReg = /[^\u4E00-\u9FA5\w]/;//中英文下划线数字
+			var res = charReg.test(uname);//如果是false就是包含其他字符
+			if (res) {
+				a.innerHTML='不允许出现特殊字符';
+				a.className = 'float';
+				isUser = false;
+				return;
+			}else{
+				// 满足条件的
+				isUser = true;
+				a.innerHTML='√';
+				a.className ='success';
+			}
+			
+		}
+
+		var PwdFa = document.querySelector('.form-style-agile2');
+		// 密码填写
+		pwd.onfocus = function() {
+			if (isPwd) {
+				return;
+			}
+			
+			// var a = document.createElement('div');
+			b.className = 'float';
+			b.innerHTML = '请填写密码';
+			PwdFa.appendChild(b);
+		}
+		
+		// 密码框失去焦点判断
+		pwd.onblur = function() {
+			var pwdReg = /[^\s]{4,14}$/;
+			var res = pwdReg.test(this.value);
+			if (!res) {
+				b.innerHTML ='4-14个字符，不允许出现空格';
+				b.className = 'float';
+				// 设置错误信息
+				isPwd = false;
+				return;
+			}else{
+				// 满足条件
+				b.innerHTML = '√';
+				b.className = 'success';
+				isPwd=true;
+			}
+		}
+		
+	</script>
+</body>
+
+</html>
